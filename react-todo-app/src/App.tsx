@@ -28,7 +28,7 @@ function App() {
       const newTodo: Todo = {
         id: Date.now(),
         text: inputValue.trim(),
-        completed: false
+        completed: false,
       }
       setTodos([...todos, newTodo])
       setInputValue('')
@@ -36,13 +36,11 @@ function App() {
   }
 
   const deleteTodo = (id: number) => {
-    setTodos(todos.filter(todo => todo.id !== id))
+    setTodos(todos.filter((todo) => todo.id !== id))
   }
 
   const toggleComplete = (id: number) => {
-    setTodos(todos.map(todo =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    ))
+    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo)))
   }
 
   const startEditing = (todo: Todo) => {
@@ -52,9 +50,7 @@ function App() {
 
   const saveEdit = (id: number) => {
     if (editValue.trim()) {
-      setTodos(todos.map(todo =>
-        todo.id === id ? { ...todo, text: editValue.trim() } : todo
-      ))
+      setTodos(todos.map((todo) => (todo.id === id ? { ...todo, text: editValue.trim() } : todo)))
     }
     setEditingId(null)
     setEditValue('')
@@ -65,14 +61,14 @@ function App() {
     setEditValue('')
   }
 
-  const filteredTodos = todos.filter(todo => {
+  const filteredTodos = todos.filter((todo) => {
     if (filter === 'active') return !todo.completed
     if (filter === 'completed') return todo.completed
     return true
   })
 
-  const activeCount = todos.filter(t => !t.completed).length
-  const completedCount = todos.filter(t => t.completed).length
+  const activeCount = todos.filter((t) => !t.completed).length
+  const completedCount = todos.filter((t) => t.completed).length
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') addTodo()
@@ -87,7 +83,7 @@ function App() {
     <div className="app">
       <div className="container">
         <h1>📝 Todo List</h1>
-        
+
         <div className="input-section">
           <input
             type="text"
@@ -97,7 +93,9 @@ function App() {
             placeholder="添加新任务..."
             className="todo-input"
           />
-          <button onClick={addTodo} className="add-btn">添加</button>
+          <button onClick={addTodo} className="add-btn">
+            添加
+          </button>
         </div>
 
         <div className="filter-section">
@@ -144,8 +142,12 @@ function App() {
                     className="edit-input"
                     autoFocus
                   />
-                  <button onClick={() => saveEdit(todo.id)} className="save-btn">✓</button>
-                  <button onClick={cancelEdit} className="cancel-btn">✕</button>
+                  <button onClick={() => saveEdit(todo.id)} className="save-btn">
+                    ✓
+                  </button>
+                  <button onClick={cancelEdit} className="cancel-btn">
+                    ✕
+                  </button>
                 </div>
               ) : (
                 <>
@@ -157,8 +159,12 @@ function App() {
                   />
                   <span className="todo-text">{todo.text}</span>
                   <div className="actions">
-                    <button onClick={() => startEditing(todo)} className="edit-btn">编辑</button>
-                    <button onClick={() => deleteTodo(todo.id)} className="delete-btn">删除</button>
+                    <button onClick={() => startEditing(todo)} className="edit-btn">
+                      编辑
+                    </button>
+                    <button onClick={() => deleteTodo(todo.id)} className="delete-btn">
+                      删除
+                    </button>
                   </div>
                 </>
               )}
@@ -166,9 +172,7 @@ function App() {
           ))}
         </ul>
 
-        {filteredTodos.length === 0 && (
-          <p className="empty-message">暂无任务，添加一个吧！</p>
-        )}
+        {filteredTodos.length === 0 && <p className="empty-message">暂无任务，添加一个吧！</p>}
       </div>
     </div>
   )

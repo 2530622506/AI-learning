@@ -1,0 +1,1 @@
+pnpm --dir react-todo-app exec lint-staged
