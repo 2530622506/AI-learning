@@ -1,1 +1,12 @@
-pnpm --dir react-todo-app exec lint-staged
+#!/bin/sh
+set -e
+
+staged_files="$(git diff --cached --name-only --diff-filter=ACMR)"
+
+if echo "$staged_files" | grep -q '^react-todo-app/'; then
+  pnpm --dir react-todo-app exec lint-staged --relative
+fi
+
+if echo "$staged_files" | grep -q '^rag-test/'; then
+  pnpm --dir rag-test exec lint-staged --relative
+fi

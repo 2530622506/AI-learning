@@ -12,8 +12,6 @@ install_dependencies() {
   echo "Installing code quality dependencies..."
   pnpm add -D \
     prettier \
-    eslint-config-prettier \
-    eslint-plugin-prettier \
     husky \
     lint-staged \
     @commitlint/cli \

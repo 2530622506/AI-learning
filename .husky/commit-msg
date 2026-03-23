@@ -1,1 +1,15 @@
-pnpm --dir react-todo-app exec commitlint --config commitlint.config.cjs --edit "$1"
+#!/bin/sh
+set -e
+
+if [ -f rag-test/commitlint.config.cjs ]; then
+  pnpm --dir rag-test exec commitlint --config commitlint.config.cjs --edit "$1"
+  exit 0
+fi
+
+if [ -f react-todo-app/commitlint.config.cjs ]; then
+  pnpm --dir react-todo-app exec commitlint --config commitlint.config.cjs --edit "$1"
+  exit 0
+fi
+
+echo "commitlint config not found"
+exit 1
