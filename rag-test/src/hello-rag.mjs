@@ -1,6 +1,7 @@
 import { ChatOpenAI, OpenAIEmbeddings } from '@langchain/openai'
 import { Document } from '@langchain/core/documents'
 import { MemoryVectorStore } from '@langchain/classic/vectorstores/memory'
+
 import dotenv from 'dotenv'
 dotenv.config({ override: true })
 
